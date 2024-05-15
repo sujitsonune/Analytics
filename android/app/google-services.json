@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "372689824242",
+    "project_id": "ai-65448",
+    "storage_bucket": "ai-65448.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372689824242:android:7b53c710cc7c71bbec636b",
+        "android_client_info": {
+          "package_name": "com.example.quiz_game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJBmHK3e7wPiFQgYCoVzBC8T-9Gki5818"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372689824242:android:0d3fe2785afd39b1ec636b",
+        "android_client_info": {
+          "package_name": "com.retail.aihq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJBmHK3e7wPiFQgYCoVzBC8T-9Gki5818"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372689824242:android:a4471d353a3ccfd7ec636b",
+        "android_client_info": {
+          "package_name": "com.retail.aihq_analytics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJBmHK3e7wPiFQgYCoVzBC8T-9Gki5818"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:372689824242:android:7045ce7e88820834ec636b",
+        "android_client_info": {
+          "package_name": "com.retail.hqanalytics"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJBmHK3e7wPiFQgYCoVzBC8T-9Gki5818"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
