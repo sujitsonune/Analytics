@@ -47,7 +47,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
             final List<DocumentSnapshot> documents = snapshot.data!.docs;
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: MediaQuery.of(context).size.width > 768 ? 2 : 2,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 16,
               ),
@@ -59,6 +59,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
 
                 return Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     SizedBox(height: 20),
                     FractionallySizedBox(
@@ -71,14 +72,13 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                           padding: EdgeInsets.all(8),
                           decoration: BoxDecoration(
                             color: Color(0xFFF1F1F1),
-                            border: Border.all(color: Colors.grey),
                             borderRadius: BorderRadius.circular(8),
                           ),
                           child: Text(
                             title,
                             style: TextStyle(
                               fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                              fontFamily: 'GoogleSans',
                             ),
                           ),
                         ),
@@ -106,68 +106,87 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
 
                           final List<DocumentSnapshot> children =
                               snapshot.data!.docs;
-
+                          SizedBox(
+                            height: 80,
+                          );
                           return GridView.builder(
                             shrinkWrap: true,
                             physics: NeverScrollableScrollPhysics(),
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 8,
+                              crossAxisSpacing: 12,
+                              mainAxisSpacing: 16,
                             ),
                             itemCount: children.length,
                             itemBuilder: (context, index) {
                               final DocumentSnapshot child = children[index];
                               final int clicks = child['clicks'] ?? 'N/A';
                               final String name = child['title'] ?? 'N/A';
-                              return Container(
-                                padding: EdgeInsets.all(8),
-                                decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.grey),
-                                  borderRadius: BorderRadius.circular(12),
-                                ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    FractionallySizedBox(
-                                      widthFactor: 0.99,
-                                      child: SizedBox(
-                                        width: double.infinity,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.20,
-                                        child: Container(
-                                          padding: EdgeInsets.all(12),
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFF4285F4)
-                                                .withOpacity(0.5),
-                                            borderRadius:
-                                                BorderRadius.circular(12),
-                                          ),
-                                          child: Center(
-                                            child: Text(
-                                              "$clicks",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                                fontWeight: FontWeight.bold,
+                              return Material(
+                                elevation: 4,
+                                borderRadius: BorderRadius.circular(12),
+                                child: Container(
+                                  height: MediaQuery.of(context).size.height *
+                                      0.25, // 25% of screen height
+                                  width: MediaQuery.of(context).size.width *
+                                      0.3, // 30% of screen width
+                                  padding: EdgeInsets.all(8),
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                      color:
+                                          Colors.grey[500]?.withOpacity(0.4) ??
+                                              Colors.transparent,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Flexible(
+                                        child: FractionallySizedBox(
+                                          widthFactor: 1.0,
+                                          heightFactor: 0.9,
+                                          child: Container(
+                                            padding: EdgeInsets.all(12),
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFF4285F4)
+                                                  .withOpacity(0.3),
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            child: Center(
+                                              child: FittedBox(
+                                                fit: BoxFit.scaleDown,
+                                                child: Text(
+                                                  "$clicks",
+                                                  style: TextStyle(
+                                                      color: Color(0xFF333333),
+                                                      fontFamily: 'GoogleSans',
+                                                      fontSize: 22),
+                                                ),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                    SizedBox(height: 12),
-                                    Center(
-                                      child: Text(
-                                        "$name",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.bold,
+                                      SizedBox(height: 12),
+                                      Center(
+                                        child: FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          child: Text(
+                                            "$name",
+                                            style: TextStyle(
+                                              fontFamily: 'GoogleSans',
+                                              color: Colors.black,
+                                              // fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                               );
                             },

@@ -2,10 +2,12 @@ import 'package:aihq_analytics/analytics.dart';
 import 'package:aihq_analytics/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-Future<void> main() async{
-
-   WidgetsFlutterBinding.ensureInitialized();
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -20,19 +22,17 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'AI HQ ANALYTICS',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-         textTheme: const TextTheme(
-          bodySmall: TextStyle(fontFamily: 'GoogleSans'),
-          bodyMedium: TextStyle(fontFamily: 'GoogleSans'),
-          bodyLarge: TextStyle(fontFamily: 'GoogleSans'),
+        title: 'AIHQ ANALYTICS',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          textTheme: const TextTheme(
+            bodySmall: TextStyle(fontFamily: 'GoogleSans'),
+            bodyMedium: TextStyle(fontFamily: 'GoogleSans'),
+            bodyLarge: TextStyle(fontFamily: 'GoogleSans'),
+          ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true,
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const AnalyticsScreen()
-    );
+        home: const AnalyticsScreen());
   }
 }
-
