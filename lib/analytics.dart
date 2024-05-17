@@ -43,7 +43,7 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(22.0),
+        padding: const EdgeInsets.all(0.0),
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('layout').snapshots(),
           builder: (context, snapshot) {
@@ -68,34 +68,35 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                 final String title = document['title'];
                 final String title2 = document.id;
 
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(height: 10),
-                    FractionallySizedBox(
-                      widthFactor: 0.99,
-                      child: Material(
-                        elevation: 4,
-                        borderRadius: BorderRadius.circular(8),
-                        child: Container(
-                          padding: EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            color: Color(0xFFF1F1F1),
-                            borderRadius: BorderRadius.circular(8),
-                          ),
-                          child: Text(
-                            title,
-                            style: TextStyle(
-                              fontSize: headFontSize,
-                              fontFamily: 'GoogleSans',
+                return Container(
+                  color: Colors.red,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      SizedBox(height: 10),
+                      FractionallySizedBox(
+                        widthFactor: 0.99,
+                        child: Material(
+                          elevation: 4,
+                          borderRadius: BorderRadius.circular(8),
+                          child: Container(
+                            padding: EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Color(0xFFF1F1F1),
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Text(
+                              title,
+                              style: TextStyle(
+                                fontSize: headFontSize,
+                                fontFamily: 'GoogleSans',
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                    SizedBox(height: 20), // Reduced height to 10
-                    Expanded(
-                      child: StreamBuilder<QuerySnapshot>(
+                      SizedBox(height: 20), // Reduced height to 10
+                      StreamBuilder<QuerySnapshot>(
                         stream: FirebaseFirestore.instance
                             .collection('layout')
                             .doc(title2)
@@ -127,80 +128,74 @@ class _AnalyticsScreenState extends State<AnalyticsScreen> {
                               final DocumentSnapshot child = children[index];
                               final int clicks = child['clicks'] ?? 'N/A';
                               final String name = child['title'] ?? 'N/A';
-                              return Material(
-                                elevation: 4,
-                                borderRadius: BorderRadius.circular(12),
-                                child: Container(
-                                  height: MediaQuery.of(context).size.height *
-                                      0.25, // 25% of screen height
-                                  width: MediaQuery.of(context).size.width *
-                                      0.3, // 30% of screen width
-                                  padding: EdgeInsets.all(8),
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                      color:
-                                          Colors.grey[500]?.withOpacity(0.4) ??
-                                              Colors.transparent,
-                                    ),
-                                    borderRadius: BorderRadius.circular(12),
+                              return Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.25,
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                padding: EdgeInsets.all(8),
+                                decoration: BoxDecoration(
+                                  color: Colors.green,
+                                  border: Border.all(
+                                    color: Colors.grey[500]?.withOpacity(0.4) ??
+                                        Colors.transparent,
                                   ),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Flexible(
-                                        child: FractionallySizedBox(
-                                          widthFactor: 1.0,
-                                          heightFactor: 0.9,
-                                          child: Container(
-                                            padding: EdgeInsets.all(12),
-                                            decoration: BoxDecoration(
-                                              color: Color(0xFF4285F4)
-                                                  .withOpacity(0.3),
-                                              borderRadius:
-                                                  BorderRadius.circular(12),
-                                            ),
-                                            child: Center(
-                                              child: FittedBox(
-                                                fit: BoxFit.scaleDown,
-                                                child: Text(
-                                                  "$clicks",
-                                                  style: TextStyle(
-                                                    color: Color(0xFF333333),
-                                                    fontFamily: 'GoogleSans',
-                                                    fontSize: headFontSize,
-                                                  ),
+                                  borderRadius: BorderRadius.circular(12),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Flexible(
+                                      child: FractionallySizedBox(
+                                        widthFactor: 1.0,
+                                        heightFactor: 0.9,
+                                        child: Container(
+                                          padding: EdgeInsets.all(12),
+                                          decoration: BoxDecoration(
+                                            color: Color(0xFF4285F4)
+                                                .withOpacity(0.3),
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                          ),
+                                          child: Center(
+                                            child: FittedBox(
+                                              fit: BoxFit.scaleDown,
+                                              child: Text(
+                                                "$clicks",
+                                                style: TextStyle(
+                                                  color: Color(0xFF333333),
+                                                  fontFamily: 'GoogleSans',
+                                                  fontSize: headFontSize,
                                                 ),
                                               ),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      SizedBox(
-                                          height: 10), // Reduced height to 10
-                                      Center(
-                                        child: FittedBox(
-                                          fit: BoxFit.scaleDown,
-                                          child: Text(
-                                            "$name",
-                                            style: TextStyle(
-                                              fontFamily: 'GoogleSans',
-                                              color: Colors.black,
-                                              fontSize: headFontSize,
-                                            ),
+                                    ),
+                                    SizedBox(
+                                        height: 10), // Reduced height to 10
+                                    Center(
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: Text(
+                                          "$name",
+                                          style: TextStyle(
+                                            fontFamily: 'GoogleSans',
+                                            color: Colors.black,
+                                            fontSize: headFontSize,
                                           ),
                                         ),
                                       ),
-                                    ],
-                                  ),
+                                    ),
+                                  ],
                                 ),
                               );
                             },
                           );
                         },
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             );
